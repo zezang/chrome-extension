@@ -17,16 +17,33 @@ body {
 }
 
 .blocked-sites {
-    position: fixed;
+    position: absolute;
     font-size: 16px;
     left: 50%;
     transform: translate(-50%, -10%);
 }
 
 #restricted-page {
+    flex-direction: column;
+    font-family: sans-serif;
     height: 100%;
     width: 100%;
     background-color: white;
     display: none;
-    color: black;
+    overflow: hidden;
+}
+
+#restricted-title {
+    padding-top: 30px;
+    font-size: 24px;
+    color: gray;
+    height: 15%;
+    vertical-align: middle;
+    margin-bottom: -20px;
+}
+
+#restricted-subtitle {
+    font-size: 14px;
+    color: gray;
+    height: 15%;
 }

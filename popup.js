@@ -1,4 +1,4 @@
-
+let restricted = ['youtube.com', 'facebook.com', 'twitter.com'];
 //Helper function to append elements to DOM
 //takes in parent element, contents (text INNERHTML of the element created, and type i.e div, span, img etc)
 function createElement(parent, contents, type) {
@@ -16,9 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const restricted = document.querySelector('#restricted-sites');
     //set target element to the hidden element with the restricted websites
     const targetEl = document.querySelector('#restricted-page');
+    //add eventlistener to toggle visibility of hidden element everytime "restricted sites" is clicked
     restricted.addEventListener('click', function() {
-        if (targetEl.style.display === "none") targetEl.style.display = "block";
-        else targetEl.style.display = "none"
+        if (targetEl.style.display === "flex") targetEl.style.display = "none";
+        else targetEl.style.display = "flex"
     }) 
 })
 
