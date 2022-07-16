@@ -28,19 +28,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const restricted_container = document.querySelector('#restrictedurl-container');
     //use chrome.storage.sync to get the stored array of all banned urls
     chrome.storage.sync.get('restricted_Updated', function(arr) {
+        console.log(arr['restricted_Updated'])
         //of the restricted_Updated property does not exists, call get on the original array and clone it to the updated array
         if (!arr['restricted_Updated']) {
             chrome.storage.sync.get('restricted_Original', function(arr) {
                 //iterate through the original array and create divs for url and icon
                 for (const url of arr['restricted_Original']) {
+                    //add parent div to which child div with url and minus icon will be added
                     const urlContainer = createElement(restricted_container, '', 'div');
                     urlContainer.setAttribute('class', 'banned-container')
+                    //div for the url
                     const urlDiv = createElement(urlContainer, url, 'div');
                     urlDiv.setAttribute('class', 'restricted-div');
+                    //add minus button in case user wants to remove it from restricted
                     const minus = createElement(urlContainer, '', 'button');
                     minus.setAttribute('class', 'remove-icon');
+                    //event listener for when the icon is clicked
                     minus.addEventListener('click', function(){
-                        alert('REMOVE DIV?')
+                        //set a variable equal to the sibling's innerHTML (contains the url)
+                        const unbanned = this.previousElementSibling.innerHTML
+                        //remove the parent element
+                        this.parentElement.remove();
+                        //get the restricted_updated array
+                        chrome.storage.sync.get('restricted_Updated', function(arr) {
+                            //get the index at which the url is at and splice it out of the array
+                            const idx = arr['restricted_Updated'].indexOf(unbanned);
+                            chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated'].splice(idx, 1)});
+                            alert(unbanned);
+                            console.log(arr['restricted_Updated']);
+                            return;
+                        })
                     })
                 }
                 chrome.storage.sync.set({'restricted_Updated': restrictedArr});
@@ -57,7 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const minus = createElement(urlContainer, '-', 'button');
                 minus.setAttribute('class', 'remove-icon');
                 minus.addEventListener('click', function(){
-                    alert('REMOVE DIV?')
+                    //set a variable equal to the sibling's innerHTML (contains the url)
+                    const unbanned = this.previousElementSibling.innerHTML
+                    //remove the parent element
+                    this.parentElement.remove();
+                    //get the restricted_updated array
+                    chrome.storage.sync.get('restricted_Updated', function(arr) {
+                        //get the index at which the url is at and splice it out of the array
+                        const idx = arr['restricted_Updated'].indexOf(unbanned);
+                        arr['restricted_Updated'].splice(idx, 1)
+                        chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated']});
+                        alert(unbanned);
+                        console.log(arr['restricted_Updated']);
+                    })
                 })
             }
         }
@@ -71,15 +100,33 @@ document.addEventListener('DOMContentLoaded', () => {
         //update the chrome storage
         const inputText = document.getElementById('blockform').value;
         if (inputText) {
-            //create the new div with the entered url in the input form
-            const urlDiv = createElement(restricted_container, inputText, 'div');
+            const urlContainer = createElement(restricted_container, '', 'div');
+            urlContainer.setAttribute('class', 'banned-container')
+            const urlDiv = createElement(urlContainer, inputText, 'div');
             urlDiv.setAttribute('class', 'restricted-div');
-            //clear the contents of the input form
-            document.getElementById('blockform').value = null;
+            const minus = createElement(urlContainer, '-', 'button');
+            minus.setAttribute('class', 'remove-icon');
+            minus.addEventListener('click', function(){
+                //set a variable equal to the sibling's innerHTML (contains the url)
+                const unbanned = this.previousElementSibling.innerHTML
+                //remove the parent element
+                this.parentElement.remove();
+                //get the restricted_updated array
+                chrome.storage.sync.get('restricted_Updated', function(arr) {
+                    //get the index at which the url is at and splice it out of the array
+                    const idx = arr['restricted_Updated'].indexOf(unbanned);
+                    arr['restricted_Updated'].splice(idx, 1)
+                    chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated']});
+                    alert(unbanned);
+                    console.log(arr['restricted_Updated']);
+                })
+            })
             //get the storage property of restricted_Updated, and set it with the inputText added
             chrome.storage.sync.get('restricted_Updated', function(arr){
                 chrome.storage.sync.set({'restricted_Updated': [...arr['restricted_Updated'], inputText]})
+                console.log(arr['restricted_Updated']);
             })
+            document.getElementById('blockform').value = null;
         }
     });
 })
