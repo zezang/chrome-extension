@@ -51,7 +51,7 @@ body {
 /* Jacob Code Starts */
 #blockform-div {
     z-index:1000;
-    margin-bottom: -120px;
+    height: 200px;
 }
 
 #blockform {
@@ -82,10 +82,33 @@ body {
     margin-left: 40px;;
 }
 
-.restricted-div {
+
+.banned-container {
+    display: flex;
+    flex-direction: row;
     width: 90%;
     color: black;
-    height: 20px;
+    height: 25px;
     border-top: 1px gray solid;
+    align-items: center;
+}
+
+.restricted-div {
+    height: 100%;
+    margin-top: 3px;
+}
+
+button.remove-icon {
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    border: none;
+    z-index: 1001;
+}
+
+.remove-icon:hover {
+    cursor: pointer;
 }
 /* Jacob Code Ends */
