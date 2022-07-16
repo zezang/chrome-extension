@@ -1,30 +1,20 @@
 
-// chrome.runtime.onInstalled.addListener(details => {
-//     const blocked = ['youtube.com', 'facebook.com', 'twitter.com']
-//     blocked.forEach((domain, index) => {
-//         let id = index + 1;
-//         chrome.declarativeNetRequest.updateDynamicRules(
-//            {addRules:[{
-//               "id": id,
-//               "priority": 1,
-//               "action": {
-//                 "type": "redirect",
-//                 "redirect": {"transform": { "scheme": "https", "host": "google.com" }
-//              }
-//             },
-//               "condition": {
-//                 "urlFilter": domain, 
-//                 "resourceTypes": ["main_frame"] 
-//             }}],
-//             removeRuleIds: [id]
-//            },
-//         )
-//     })
-// })
-
-chrome.storage.sync.get('restricted_Updated', function(arr) {
-  console.log(arr['restricted_Updated'])
+//listen for the event of a tab url changing
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
+  //get the banned websites array from chrome storage
+  chrome.storage.sync.get('restricted_Updated', function(banned) {
+    //iterate through the array found at the restricted_Updated property
+    for (const url of banned['restricted_Updated']) {
+      //if the tab's current url includes any of the strings, then re-direct to google
+      if (tab.url.includes(url)) {
+        chrome.tabs.update({url: "redirect.html"})
+      }
+    }
+  })
 })
+
+
+
 
 
 

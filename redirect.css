@@ -1,0 +1,49 @@
+html{
+    background-image: url('img/RedirectCat2.webp');
+    background-size: 100% 100%;
+}
+
+h2 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    height: 50px;
+    vertical-align: middle;
+}
+
+.bottom-links{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 50px;
+    width: 90%;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.redirect {
+    height: 60px;
+    width: 200px;
+    text-align: center;
+}
+
+.redirect-link {
+    color:white;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+#go-back {
+    background-color: rgb(39, 187, 39);
+    border: none;
+    border-radius: 0.25em;
+}
+
+#go-ahead {
+    background-color: red;
+    border: none;
+    border-radius: 0.25em;
+}
