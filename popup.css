@@ -24,6 +24,7 @@ body {
 }
 
 #restricted-page {
+    justify-content: center;
     flex-direction: column;
     font-family: sans-serif;
     height: 100%;
@@ -47,3 +48,44 @@ body {
     color: gray;
     height: 15%;
 }
+/* Jacob Code Starts */
+#blockform-div {
+    z-index:1000;
+    margin-bottom: -120px;
+}
+
+#blockform {
+    width: 80%;
+    height: 30px;
+}
+
+#blockbutton {
+    width: 80%;
+    height: 30px;
+    background-color: rgb(255, 162, 0);
+    border: 0px;
+    color: white;
+}
+
+#restrictedurl-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    /* background-color: aqua; */
+    width: 90%;
+    border-radius: 0.25em;
+    z-index: 999;
+    overflow-x: hidden;  
+    overflow-y: auto;
+    margin: auto;  
+    max-height: 50%;
+    margin-left: 40px;;
+}
+
+.restricted-div {
+    width: 90%;
+    color: black;
+    height: 20px;
+    border-top: 1px gray solid;
+}
+/* Jacob Code Ends */

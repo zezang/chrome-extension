@@ -1,4 +1,4 @@
-let restricted = ['youtube.com', 'facebook.com', 'twitter.com'];
+
 //Helper function to append elements to DOM
 //takes in parent element, contents (text INNERHTML of the element created, and type i.e div, span, img etc)
 function createElement(parent, contents, type) {
@@ -12,6 +12,7 @@ function createElement(parent, contents, type) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    let restrictedArr = ['youtube.com', 'facebook.com', 'twitter.com'];
     //declare a constant and set it equal to the "restricted sites" at bottom of popup
     const restricted = document.querySelector('#restricted-sites');
     //set target element to the hidden element with the restricted websites
@@ -20,6 +21,24 @@ document.addEventListener('DOMContentLoaded', () => {
     restricted.addEventListener('click', function() {
         if (targetEl.style.display === "flex") targetEl.style.display = "none";
         else targetEl.style.display = "flex"
-    }) 
+    })
+
+    const restricted_container = document.querySelector('#restrictedurl-container');
+    for (const url of restrictedArr) {
+        const urlDiv = createElement(restricted_container, url, 'div');
+        urlDiv.setAttribute('class', 'restricted-div')
+    }
+    
+    document.getElementById('blockform-div').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const inputText = document.getElementById('blockform').value;
+        if (inputText) {
+            restrictedArr.push(inputText);
+            const urlDiv = createElement(restricted_container, inputText, 'div');
+            urlDiv.setAttribute('class', 'restricted-div');
+            document.getElementById('blockform').value = null;
+        }
+        // alert(document.getElementById('blockform').value)
+    });
 })
 

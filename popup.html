@@ -7,49 +7,23 @@
     <h2> Oliver and Jacob's Productivity Extension </h2>
     <div class = "blocked-sites">
         <span id = "restricted-sites" style="cursor: pointer">
-            Restricted Sites<br><br>
-        <div id="restrictedlist"></div>
+            Restricted Sites
         </span>
     </div>
     <div class = "restricted" id = "restricted-page">
-        <div class = "restricted-title" id = "restricted-title"> Blocked Sites </div>    
-        <div class = "restricted-subtitle" id = "restricted-subtitle"> Enter sites below to block and improve productivity! </div>
-        <form id="blockform-div"">
-          <div class="rendered-form">
-            <div class="formbuilder-text form-group field-blockform">
-                <label for="blockform" class="formbuilder-text-label">Blocked Sites<span class="tooltip-element" tooltip="Please submit one site per submission. No &quot;https://www.&quot; needed">?</span></label>
-                <input type="text" placeholder="e.g., facebook.com, twitter.com" class="form-control" name="blockform" access="false" id="blockform" title="Please submit one site per submission. No &quot;https://www.&quot; needed">
-            </div>
-            <div class="formbuilder-button form-group field-blockbutton">
-              <button type="button" class="btn-danger btn" name="blockbutton" access="false" style="danger" id="blockbutton">Block This Site!</button>
-          </div>
-        </div>
+        <div id = "restricted-title"> Blocked Sites </div><br><br>      
+        <div id = "restricted-subtitle"> Enter sites below to block and improve your productivity.</div>
+          <!-- Jacob Code Starting -->
+        <form id="blockform-div">
+                <!-- <label for="blockform">Blocked Sites</label><br><br> -->
+              <input type="text" placeholder="e.g., facebook.com, twitter.com" id="blockform" /><br><br>
+              <button type="submit" id="blockbutton">Block</button>
         </form>
+        <div id = "restrictedurl-container"></div> 
+      </div>
+           
+        <!-- Jacob Code Closing -->
     </div>
-    <!-- Jacob: The working assumption with the content below, which I can't yet test, is that the embedded scripts 
-      will have access to the variables and data from popup.js, since it's already loaded. -->
-    <script type="text/javascript" src="popup.js"></script>
-    <script type="text/javascript">
-      //J: To display blocked sites at top of page
-      //J: Create ordered list
-      const ol = document.createElement("ol");
-
-      //J: Populate ordered list with elements from 'restricted' array
-      for (let i of restricted){
-        let li = document.createElement("li"); li.innerHTML = i;
-        ol.appendChild(li);
-        }
-
-      //J: Replace div 'restrictedlist' with ordered list
-      document.getElementById('restrictedlist').appendchild(ol);
-
-      //J: JS below intended to push form values to restricted array
-      document.getElementById('blockbutton').addEventListener('click', function() {
-
-        restricted.push(document.getElementById('blockform').value)
-      //J: Reload page after pushing new item
-        location.reload();
-        });
-    </script>
   </body>
+  <script type="text/javascript" src="popup.js"></script>
 </html>
