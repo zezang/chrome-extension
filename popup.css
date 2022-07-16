@@ -102,7 +102,7 @@ button.remove-icon {
     height: 18px;
     width: 18px;
     border-radius: 50%;
-    background-color: red;
+    background-color:#e78a31;
     color: white;
     border: none;
     z-index: 1001;
@@ -110,5 +110,11 @@ button.remove-icon {
 
 .remove-icon:hover {
     cursor: pointer;
+}
+
+#logo-sm {
+    width: 240px;
+    height: 146px;
+    margin-bottom: 200px;
 }
 /* Jacob Code Ends */

@@ -1,5 +1,5 @@
 html{
-    background-image: url('img/RedirectCat2.webp');
+    background-image: url('img/ocean_bg.jpg');
     background-size: 100% 100%;
 }
 
@@ -26,13 +26,13 @@ a {
 }
 
 .redirect {
-    display: flex;
+    display: inline-block;
     height: 60px;
+    line-height: 60px;
     width: 200px;
-    text-align: center;
-    vertical-align: middle;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+    vertical-align: middle;
 }
 
 .redirect:hover{
@@ -40,13 +40,15 @@ a {
 }
 
 #go-back {
-    background-color: rgb(39, 187, 39);
+    background-color: #e78a31;
     border: none;
     border-radius: 0.25em;
+    text-align: center;
 }
 
 #go-ahead {
-    background-color: red;
+    background-color: #e78a31;
     border: none;
     border-radius: 0.25em;
+    text-align: center;
 }
