@@ -12,7 +12,8 @@ function createElement(parent, contents, type) {
 
 document.addEventListener('DOMContentLoaded', () => {
     let restrictedArr = ['youtube.com', 'facebook.com', 'twitter.com'];
-    chrome.storage.sync.set({'restricted_Original': restrictedArr})
+    chrome.storage.sync.set({'restricted_Original': restrictedArr});
+    chrome.storage.sync.set({'status': 'active'});
     // let restrictedArr = ['youtube.com', 'facebook.com', 'twitter.com'];
     //declare a constant and set it equal to the "restricted sites" at bottom of popup
     const restricted = document.querySelector('#restricted-sites');
@@ -54,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             //get the index at which the url is at and splice it out of the array
                             const idx = arr['restricted_Updated'].indexOf(unbanned);
                             chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated'].splice(idx, 1)});
-                            alert(unbanned);
-                            console.log(arr['restricted_Updated']);
+                            // alert(unbanned);
+                            // console.log(arr['restricted_Updated']);
                             return;
                         })
                     })
@@ -84,8 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const idx = arr['restricted_Updated'].indexOf(unbanned);
                         arr['restricted_Updated'].splice(idx, 1)
                         chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated']});
-                        alert(unbanned);
-                        console.log(arr['restricted_Updated']);
+                        // alert(unbanned);
+                        // console.log(arr['restricted_Updated']);
                     })
                 })
             }
@@ -117,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const idx = arr['restricted_Updated'].indexOf(unbanned);
                     arr['restricted_Updated'].splice(idx, 1)
                     chrome.storage.sync.set({'restricted_Updated': arr['restricted_Updated']});
-                    alert(unbanned);
-                    console.log(arr['restricted_Updated']);
+                    // alert(unbanned);
+                    // console.log(arr['restricted_Updated']);
                 })
             })
             //get the storage property of restricted_Updated, and set it with the inputText added
